@@ -11,13 +11,11 @@ messagesController.postMessage = async (req, res, next) => {
       'SELECT chat_id FROM chats WHERE user_1 = $1 AND user_2 = $2 OR user_1 = $2 AND user_2 = $1 ;';
     let values = [user_1, user_2];
     const { rows } = await db.query(getChatIdQuery, values);
-    console.log('postMsg getChatID:', rows[0]);
 
     if (!rows[0]) {
       const makeChatIdQuery =
         'INSERT INTO chats (user_1, user_2) VALUES ($1, $2) RETURNING chat_id;';
       const makeChatResults = await db.query(makeChatIdQuery, values);
-      console.log('postMsg makeChatID:', makeChatResults.rows);
       chatId = makeChatResults.rows[0].chat_id;
     } else {
       chatId = rows[0].chat_id;
@@ -52,7 +50,6 @@ messagesController.getMessages = async (req, res, next) => {
       'SELECT chat_id FROM chats WHERE user_1 = $1 AND user_2 = $2;';
     let values = [user_1, user_2];
     const { rows } = await db.query(getChatIdQuery, values);
-    console.log('postMsg getChatID:', rows[0]);
     chatId = rows[0].chat_id;
 
     if (!rows[0]) {
