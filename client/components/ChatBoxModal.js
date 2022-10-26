@@ -2,39 +2,63 @@ import React, { useEffect, useState } from 'react';
 import '../stylesheets/ModalContainer.css';
 import Messages from './Messages';
 import axios from 'axios';
-import io from 'socket.io-client';
+import MessagesRecieved from './MessagesRecieved';
 
 const ChatBoxModal = props => {
   const [msgs, setMsgs] = useState();
-  const [socket, changeSocket] = useState();
-  const [messageBody, setMessageBody] = useState("");
+  const [pfp, setPfp] = useState();
+  const token = JSON.parse(localStorage.getItem('token'));
 
   useEffect(() => {
     async function getMsgs() {
       // will be making await calls using axios to backend - passing down to model as messages prop
+      const user1 = await axios.get(`/api/${token}`);
       axios
-        .get('http://localhost:8080/api/messages/dummymessage')
+        .get(`/api/messages?user_1=${user1.data.username}&user_2=${props.name}`)
         .then(response => {
           const newArr = response.data.map(el => {
-            return <Messages message={el.message} />;
+            if (el.owner_name === user1.data.username) {
+              return (
+                <Messages
+                  username={el.owner_name}
+                  message={el.message_text}
+                  pic={user1.data.url}
+                />
+              );
+            } else {
+              return (
+                <MessagesRecieved
+                  username={el.owner_name}
+                  message={el.message_text}
+                  pic={props.pic}
+                />
+              );
+            }
           });
           // console.log(newArr)
           setMsgs(newArr);
         });
     }
     getMsgs();
-    changeSocket(io.connect('ws://localhost:3000'));
   }, []);
 
+  async function sendMsgs() {
+    const user1 = await axios.get(`/api/${token}`);
+    await axios.post('api/messages', {
+      user_1: user1.data.username,
+      user_2: props.name,
+      messageText: document.querySelector('.forMsg').value,
+    });
+    document.querySelector('.forMsg').value = '';
+    // console.log(document.querySelector('.forMsg').value)
+  }
 
   const sendMessage = () => {
     if (messageBody) {
-        socket.emit(
-          "chatMessages", messageBody
-        );
-        setMessageBody("");
+      socket.emit('chatMessages', messageBody);
+      setMessageBody('');
     }
- };
+  };
 
   if (!props.show) return null;
   return (
@@ -43,7 +67,7 @@ const ChatBoxModal = props => {
       <div className="msgDisplay">{msgs}</div>
       <input
         name="forChat"
-        onChange={(e) => setMessageBody(e.target.value)}
+        onChange={e => setMessageBody(e.target.value)}
         type="text"
         placeholder="Send Your Message..."
         className="forMsg"
@@ -51,7 +75,7 @@ const ChatBoxModal = props => {
       <button onClick={props.close} className="closeButton">
         X
       </button>
-      <button  onClick={sendMessage} className="sendButton">
+      <button onClick={sendMessage} className="sendButton">
         <span className="sendButtonSpan">Send</span>
       </button>
     </div>
