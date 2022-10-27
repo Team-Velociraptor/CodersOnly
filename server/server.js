@@ -47,6 +47,8 @@ app.use('/api', apiRouter);
 io.on('connection', socket => {
   console.log(`Client connected: ${socket.id}`);
 
+  console.log('CLIENTS CONNECTED', socket.client());
+
   socket.on('joinChat', chatId => {
     console.log('JOINED CHAT', chatId);
 
