@@ -20,7 +20,7 @@ const Navbar = (props) => {
     <header>
       <nav className='navBar'>
         <Link to='/Profile'>
-          <button className='navBtn'>console.log(myProfile)</button>
+          <button className='navBtn'>My Profile</button>
         </Link>
         <div className='mascot'>
           <img className='navBarImage' src={Mole} alt='starmole' />
@@ -28,13 +28,13 @@ const Navbar = (props) => {
         </div>
         <div className='navBtnDiv'>
           <Link to='/Feed'>
-            <button className='navBtn'>console.log(coders)</button>
+            <button className='navBtn'>Find Coders!</button>
           </Link>
           <Link to='/Matches'>
-            <button className='navBtn'>if(match === true)</button>
+            <button className='navBtn'>Check My Matches</button>
           </Link>
           <Link>
-            <button onClick={handleClick} className='navBtn'>Log Out</button>
+            <button onClick={handleClick} className='navBtn log-out'>Log Out</button>
           </Link>
         </div>
       </nav>

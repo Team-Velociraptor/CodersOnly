@@ -106,19 +106,22 @@ const ChatBoxModal = props => {
     <div className="ModalContainer">
       <h1 className="chatWith">Your chat with {props.name}</h1>
       <div className="msgDisplay">{msgs}</div>
-      <input
-        name="forChat"
-        onChange={e => setMessageBody(e.target.value)}
-        type="text"
-        placeholder="Send Your Message..."
-        className="forMsg"
-      ></input>
+      <div className="sendMessageDiv">
+        <input
+          name="forChat"
+          onChange={e => setMessageBody(e.target.value)}
+          type="text"
+          placeholder="Send Your Message..."
+          className="forMsg"
+        ></input>
+        <button onClick={sendMessage} className="navBtn sendBtn">
+          <span className="sendButtonSpan">Send</span>
+        </button>
+      </div>
       <button onClick={props.close} className="closeButton">
         X
       </button>
-      <button onClick={sendMessage} className="sendButton">
-        <span className="sendButtonSpan">Send</span>
-      </button>
+      
     </div>
   );
 };

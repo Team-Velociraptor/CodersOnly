@@ -17,8 +17,6 @@ const Login = (props) => {
     // const pw = document.getElementById('password').value;
     // console.log('id ' + id);
     // console.log('pw ' + pw);
-    console.log(username);
-    console.log(password);
 
     fetch('/api/verification', {
       method: 'POST',

@@ -23,7 +23,8 @@
     font-family: 'DejaVu Sans Mono', sans-serif;
 }
 .msgDisplay {
-    background-color: rgba(0, 0, 255, 0.263);
+    background-color: rgb(255 255 255);
+    border-radius: 10px;
     height:27vh;
     width:29.3vw;
     display: flex;
@@ -34,7 +35,8 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    align-self: flex-end
+    align-self: flex-end;
+    padding: 10px;
 }
 .mSent img{
     height: 50px;
@@ -51,6 +53,7 @@
     display: flex;
     align-items: center;
     flex-direction: row;
+    padding: 10px;
 }
 .mRecieved img{
     height: 50px;
@@ -113,4 +116,14 @@
 
 .sendButto:hover .sendButtonSpan {
     background: transparent;
+}
+
+.sendBtn {
+    width: 100px;
+    height: 60px;
+    margin-top: 10px;
+}
+
+.sendMessageDiv {
+    display: flex;
 }

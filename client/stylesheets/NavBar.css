@@ -44,7 +44,7 @@
   font-family: ui-sans-serif, system-ui, -apple-system, system-ui, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 700;
   justify-content: center;
   line-height: 1.75rem;
@@ -85,4 +85,8 @@
 
 .navBtnDiv {
   padding-top: 100px;
+}
+
+.log-out {
+  background-color: rgb(255, 65, 65)
 }
