@@ -46,6 +46,7 @@ const MatchesItem = props => {
         close={modalDisplay}
         name={username}
         pic={url}
+        user={props.user}
       />
     </div>
   );
