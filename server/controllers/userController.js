@@ -35,11 +35,20 @@ userController.createUser = async (req, res, next) => {
       url,
     } = req.body;
 
+    // Be-crypt the password passed in.
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt)
 
+    // Check if the user entered a username that is a string.
     if (typeof username !== 'string')
       throw new Error('username should be a string');
+
+    // Set default profile picture for images that don't load.
+    const img = new Image();
+    img.src = url;
+    img.onload = () => console.log('loaded');
+    img.onerror = () => console.log('failed');
+
 
     res.locals.user = await User.create({
       username,
