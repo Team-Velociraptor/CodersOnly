@@ -44,11 +44,12 @@ userController.createUser = async (req, res, next) => {
       throw new Error('username should be a string');
 
     // Set default profile picture for images that don't load.
-    const img = new Image();
-    img.src = url;
-    img.onload = () => console.log('loaded');
-    img.onerror = () => console.log('failed');
+    const imgTest = (link) => {
+      return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(link)
+    };
 
+    if (!imgTest(url) || url === "" ) {url = 'https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'
+  }
 
     res.locals.user = await User.create({
       username,
