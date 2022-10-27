@@ -5,7 +5,7 @@ const MessagesRecieved = props => {
   console.log(props.pic);
   return (
     <div className="mRecieved">
-      <img src={props.pic} />
+      <img alt="img" src={props.pic} />
       <p>{props.message}</p>
     </div>
   );

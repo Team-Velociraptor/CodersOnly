@@ -8,7 +8,6 @@ const ChatBoxModal = props => {
   const [msgs, setMsgs] = useState([]);
   const [pfp, setPfp] = useState();
   const [messageBody, setMessageBody] = useState('');
-  const [currentChatId, setChatId] = useState();
   const token = JSON.parse(localStorage.getItem('token'));
 
   useEffect(() => {
