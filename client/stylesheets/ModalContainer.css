@@ -4,7 +4,7 @@
     align-content: center;
     align-items: center;
     width: 30vw;
-    height: 40vh;
+    height: 60vh;
     background: #c4fff9;
     border: 4px solid rgb(0, 0, 0);
     transition: 1.1s ease-out;
@@ -13,11 +13,12 @@
     transform: scale(1);
     opacity: 1;
     visibility: visible;
-    position: absolute;
+    position:fixed;
     float: left;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    z-index: 5;
 }
 .chatWith {
     font-family: 'DejaVu Sans Mono', sans-serif;
@@ -25,7 +26,7 @@
 .msgDisplay {
     background-color: rgb(255 255 255);
     border-radius: 10px;
-    height:27vh;
+    height:47vh;
     width:29.3vw;
     display: flex;
     flex-direction: column;
@@ -39,7 +40,7 @@
     padding: 10px 0px;
 }
 .mSent img{
-    height: 50px;
+    height: 70px;
     width: 70px;
     border-radius:30px;
     margin-left: 5px;
@@ -56,7 +57,7 @@
     flex-direction: row;
 }
 .mRecieved img{
-    height: 50px;
+    height: 70px;
     width: 70px;
     border-radius:30px;
     margin-left: 5px;
@@ -133,4 +134,33 @@
     display: flex;
 
     align-items: center;
+}
+.underPic{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.underPic p{
+    margin-top: -15px;
+    margin-right: 35px;
+}
+.underPicRec{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.underPicRec p{
+    margin-top: -10px;
+    margin-left: 10px;
+}
+.sb1:before{
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid #00bfb6;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #00bfb6;
+    border-bottom: 10px solid transparent;
+    right: -19px;
+    top: 6px;
 }
