@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import '../stylesheets/MatchesItem.css';
 import ChatBoxModal from './ChatBoxModal';
 
-const MatchesItem = (props) => {
+const MatchesItem = props => {
   const [modal, showModal] = useState(false);
-  const [messages, setMessages] = useState()
+  const [messages, setMessages] = useState();
 
   // The way each user profile will look in the feed
   if (!props.user) {
@@ -13,29 +13,40 @@ const MatchesItem = (props) => {
   }
   //each props.user is currently a unique user object
   useEffect(() => {
-    console.log(props.user)
+    console.log(props.user);
   }, []);
-  
-  const modalDisplay = e => {
-    showModal(!modal)
-  }
 
+  const modalDisplay = (e, chatId) => {
+    showModal(!modal);
+    joinChat(chatId);
+  };
 
-
+  const joinChat = async chatId => {
+    await props.socket.emit('joinChat', chatId);
+  };
 
   const { username, age, location, comment, proglang, url } = props.user;
   return (
-    <div className='matchesContainer'>
-      <div className='username'>
-        <h3 id='userName'>{username}</h3>
+    <div className="matchesContainer">
+      <div className="username">
+        <h3 id="userName">{username}</h3>
       </div>
-      <img className='matchesImage' src={url} alt='profileImage' />
-      <p className='userDetail'>Age: {age}</p>
-      <p className='userDetail'>Location: {location}</p>
-      <p className='userDetail'>Bio: {comment}</p>
-      <p className='userDetail'>Programming Language: {proglang}</p>
-      <button onClick={modalDisplay}>slideInto{username}DMs()</button>
-      <ChatBoxModal show={modal} close={modalDisplay} name={username} pic={url} />
+      <img className="matchesImage" src={url} alt="profileImage" />
+      <p className="userDetail">Age: {age}</p>
+      <p className="userDetail">Location: {location}</p>
+      <p className="userDetail">Bio: {comment}</p>
+      <p className="userDetail">Programming Language: {proglang}</p>
+      <button onClick={e => modalDisplay(e, props.chatId)}>
+        slideInto{username}DMs()
+      </button>
+      <ChatBoxModal
+        chatId={props.chatId}
+        socket={props.socket}
+        show={modal}
+        close={modalDisplay}
+        name={username}
+        pic={url}
+      />
     </div>
   );
 };

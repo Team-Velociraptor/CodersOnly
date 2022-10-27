@@ -10,12 +10,11 @@ const usersRouter = require('./routes/users');
 const messagesRouter = require('./routes/messages');
 const apiRouter = require('./api');
 const cors = require('cors');
-const { io } = require('socket.io-client');
-
 app.use(cors());
 
 const server = http.createServer(app);
-module.exports = chatHandlerIo = socketio(server, {
+
+const io = socketio(server, {
   cors: {
     origin: '*',
   },
@@ -48,11 +47,23 @@ app.use('/api/users', usersRouter);
 app.use('/api/messages', messagesRouter);
 
 app.use('/api', apiRouter);
-chatHandlerIo.on('connection', socket => {
-  socket.on('chatMessages', msg => {
-    console.log('ON BACKEND', msg);
+
+io.on('connection', socket => {
+  console.log(`Client connected: ${socket.id}`);
+
+  socket.on('joinChat', chatId => {
+    console.log('JOINED CHAT', chatId);
+
+    console.log(socket.join(chatId));
+  });
+
+  socket.on('chatMessages', data => {
+    console.log('CHAT FROM BACKEND', data);
+
+    io.to(data.chatId).emit('recieveMessage', data);
   });
 });
+
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
