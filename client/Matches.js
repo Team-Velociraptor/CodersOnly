@@ -10,7 +10,7 @@ const Matches = props => {
   const [userMatches, setUserMatches] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/${props.currUser}`)
+    fetch(`/api/users/${props.currUser}`)
       .then(data => data.json())
       .then(data => {
         return data;
