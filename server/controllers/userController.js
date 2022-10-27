@@ -63,7 +63,7 @@ userController.createUser = async (req, res, next) => {
   }
 };
 
-userController.updateUser = async(req, res, next) => {
+userController.updateUser = async (req, res, next) => {
 
     try {
       const { username } = req.params;
@@ -98,6 +98,43 @@ userController.updateUser = async(req, res, next) => {
           },
       });
     }
+
+}
+
+userController.unmatchUser = async (req, res, next) => {
+
+  try {
+    const {
+      username,
+      clickedUser
+    } = req.body;
+
+    let { matches } = await User.findOne({ username: username });
+
+    matches = {
+      ...matches,
+      [clickedUser]: 'no'
+    }
+
+    const updateObj = {
+      $set: {
+        matches: matches
+      }
+    }
+
+    res.locals.user = await User.updateOne({username}, updateObj).exec();
+    
+    return next();
+  }
+  catch (err) {
+    return next({
+        log: `controller.js: ERROR: ${err}`,
+        status: 400,
+        message: {
+        err: 'An error occurred in userController.unmatchUser. Check server logs for more details',
+        },
+    });
+  }
 
 }
 
