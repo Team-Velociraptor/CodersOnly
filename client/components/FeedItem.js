@@ -21,7 +21,6 @@ const FeedItem = (props) => {
 
       <p className='userDetail'>Age: {age}</p>
       <p className='userDetail'>Location: {location}</p>
-      
       <p className='userDetail bio'>Bio: {comment}</p>
       <p className='userDetail'>Programming Language: {proglang}</p>
     </div>

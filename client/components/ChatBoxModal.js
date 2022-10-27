@@ -149,7 +149,6 @@ const ChatBoxModal = props => {
       <button onClick={props.close} className="closeButton">
         X
       </button>
-      
     </div>
   );
 };

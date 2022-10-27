@@ -34,7 +34,7 @@ const Navbar = (props) => {
             <button className='navBtn'>Check My Matches</button>
           </Link>
           <Link>
-            <button onClick={handleClick} className='navBtn log-out'>Log Out</button>
+          <button onClick={handleClick} className='navBtn log-out'>Log Out</button>
           </Link>
         </div>
       </nav>
