@@ -3,7 +3,6 @@ import '../stylesheets/ModalContainer.css';
 import Messages from './Messages';
 import axios from 'axios';
 import MessagesRecieved from './MessagesRecieved';
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 const ChatBoxModal = props => {
   const [msgs, setMsgs] = useState([]);

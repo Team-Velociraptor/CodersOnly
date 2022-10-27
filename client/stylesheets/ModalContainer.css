@@ -40,7 +40,7 @@
 }
 .mSent img{
     height: 50px;
-    width: 50px;
+    width: 70px;
     border-radius:30px;
     margin-left: 5px;
     margin-right: 10px;
@@ -57,7 +57,7 @@
 }
 .mRecieved img{
     height: 50px;
-    width: 50px;
+    width: 70px;
     border-radius:30px;
     margin-left: 5px;
     margin-right: 10px;
@@ -83,6 +83,13 @@
     right:0; /* new */
     top: 0; /* new */
     position: absolute; /* new */
+    border: none;
+    color: black;
+    background-color: #ff6666;
+    border-radius: 3px;
+    width: 40px;
+    height: 40px;
+    font-weight: 700;
 }
 .sendButton{
     position: absolute;
