@@ -8,7 +8,7 @@ const authRouter = require('./routes/auth');
 const functionRouter = require('./routes/functions');
 const usersRouter = require('./routes/users');
 const messagesRouter = require('./routes/messages');
-// const apiRouter = require('./api');
+const apiRouter = require('./api');
 const cors = require('cors');
 app.use(cors());
 
@@ -42,7 +42,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/messages', messagesRouter);
 
-// app.use('/api', apiRouter);
+app.use('/api', apiRouter);
 
 io.on('connection', socket => {
   //console.log(`Client connected: ${socket.id}`);

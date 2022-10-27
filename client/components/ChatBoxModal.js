@@ -14,7 +14,7 @@ const ChatBoxModal = props => {
   useEffect(() => {
     async function getMsgs() {
       // will be making await calls using axios to backend - passing down to model as messages prop
-      const user1 = await axios.get(`/api/${token}`);
+      const user1 = await axios.get(`/api/users/${token}`);
       setUser(user1.data);
       axios
         .get(`/api/messages?user_1=${user1.data.username}&user_2=${props.name}`)
@@ -52,7 +52,7 @@ const ChatBoxModal = props => {
   }, []);
 
   const getCurrentUser = async userToken => {
-    const { data } = await axios.get(`/api/${userToken}`);
+    const { data } = await axios.get(`/api/users/${userToken}`);
     return data;
   };
 
@@ -91,7 +91,7 @@ const ChatBoxModal = props => {
   };
 
   async function sendMsgs() {
-    const user1 = await axios.get(`/api/${token}`);
+    const user1 = await axios.get(`/api/users/${token}`);
     const { data } = await axios.post('api/messages', {
       user_1: user1.data.username,
       user_2: props.name,

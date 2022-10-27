@@ -7,13 +7,10 @@ import './stylesheets/Matches.css';
 import io from 'socket.io-client';
 
 const Matches = props => {
-  const a_socket = io.connect('ws://localhost:3000');
-  const [socket, changeSocket] = useState(a_socket);
-
   const [userMatches, setUserMatches] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/${props.currUser}`)
+    fetch(`/api/users/${props.currUser}`)
       .then(data => data.json())
       .then(data => {
         return data;
@@ -40,7 +37,6 @@ const Matches = props => {
             />
           );
         });
-
         setUserMatches(matchesItemsArr);
       });
   }, []);
