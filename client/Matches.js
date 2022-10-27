@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MatchesItem from './components/MatchesItem';
 import Navbar from './components/NavBar';
 import './stylesheets/Matches.css';
+import axios from 'axios';
 
 import io from 'socket.io-client';
 
@@ -34,7 +35,7 @@ const Matches = props => {
               socket={io.connect('ws://localhost:3000')}
               key={el._id}
               user={el}
-              remover = {remover}
+              remover={remover}
             />
           );
         });
@@ -42,21 +43,29 @@ const Matches = props => {
       });
   }, []);
 
-  async function remover(e) {
-    await axios.put('/api/users/unmatch', {username: props.currUser, clickedUser: props.user.username})
+  async function remover(e, username) {
+    await axios.put('/api/users/unmatch', {
+      username: props.currUser,
+      clickedUser: username,
+    });
 
-    console.log("firing");
-    axios.get(`/api/${props.currUser}`)
-    .then(data => {
-      const matchesArr = props.allUsers.filter((el) => {
-        if (data.data.matches[el.username] === 'yes' && el.matches[props.currUser] === 'yes') return true;
+    console.log('firing');
+
+    axios.get(`/api/${props.currUser}`).then(data => {
+      const matchesArr = props.allUsers.filter(el => {
+        if (
+          data.data.matches[el.username] === 'yes' &&
+          el.matches[props.currUser] === 'yes'
+        )
+          return true;
       });
       // console.log(matchesArr)
-      const matchesItemsArr = matchesArr.map((el) => {
+      const matchesItemsArr = matchesArr.map(el => {
         return <MatchesItem key={el._id} user={el} remover={remover} />;
       });
       setUserMatches(matchesItemsArr);
-    })
+    });
+    
   }
 
   return (

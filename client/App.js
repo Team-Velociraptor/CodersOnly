@@ -20,7 +20,7 @@ const App = () => {
   const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
-    const { data } = axios.get('api/messages/dummymessage');
+    // const { data } = axios.get('api/messages/dummymessage');
     fetch('/api/functions/friends')
       .then(response => response.json())
       .then(data => {
