@@ -69,8 +69,8 @@ const Feed = (props) => {
         )}
         <FeedItem user={currUserFeed[currIndex]} />
         <div className="feedBtns">
-          <button onClick={yesHandler}>Yes</button>
-          <button onClick={noHandler}>No</button>
+        <button className="navBtn" onClick={yesHandler}>Yes</button>
+          <button className="navBtn log-out" onClick={noHandler}>No</button>
         </div>
       </div>
     </div>

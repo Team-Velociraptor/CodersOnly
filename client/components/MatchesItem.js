@@ -21,6 +21,10 @@ const MatchesItem = props => {
     joinChat(chatId);
   };
 
+  const handleDelete = () => {
+    console.log("deleted!")
+  }
+
   const joinChat = async chatId => {
     await props.socket.emit('joinChat', chatId);
   };
@@ -32,22 +36,29 @@ const MatchesItem = props => {
         <h3 id="userName">{username}</h3>
       </div>
       <img className="matchesImage" src={url} alt="profileImage" />
-      <p className="userDetail">Age: {age}</p>
-      <p className="userDetail">Location: {location}</p>
-      <p className="userDetail">Bio: {comment}</p>
-      <p className="userDetail">Programming Language: {proglang}</p>
-      <button onClick={e => modalDisplay(e, props.chatId)}>
-        slideInto{username}DMs()
-      </button>
-      <ChatBoxModal
-        chatId={props.chatId}
-        socket={props.socket}
-        show={modal}
-        close={modalDisplay}
-        name={username}
-        pic={url}
-        user={props.user}
-      />
+      <div className ="ageLocation">
+        <p className="userDetail"><span className="infoProperty">Age:</span> {age}</p>
+        <p className="userDetail"><span className="infoProperty">Location:</span> {location}</p>
+      </div>
+      <p className="userDetail bio"><span className="infoProperty">Bio:</span> {comment}</p>
+      <p className="userDetail"><span className="infoProperty">Programming Language:</span> {proglang}</p>
+
+      <div className="chatBtnDiv">
+        <button className="navBtn" onClick={e => modalDisplay(e, props.chatId)}>
+          Chat With {username}!
+        </button>
+        <ChatBoxModal
+          chatId={props.chatId}
+          socket={props.socket}
+          show={modal}
+          close={modalDisplay}
+          name={username}
+          pic={url}
+        />
+        <button className="navBtn log-out" onClick={e => handleDelete()}>
+            Unmatch!
+        </button>
+      </div>
     </div>
   );
 };
