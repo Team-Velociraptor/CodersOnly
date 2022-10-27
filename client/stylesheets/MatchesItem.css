@@ -2,15 +2,15 @@
   height: 400px;
   width: 100%;
   object-fit: cover;
+  border: solid 2px #c7ddea;
 }
 
 .matchesContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
   width: 500px;
-  background-color: whitesmoke;
+  background-color: #9ceaef;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
     rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
@@ -30,4 +30,37 @@
 
 .username h3 {
   text-align: center;
+}
+
+.infoProperty {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.ageLocation {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  align-items: center;
+}
+
+.chatBtnDiv {
+  display: flex;
+  padding: 15px 0px;
+}
+
+.bio {
+  padding: 0px 30px;
+}
+
+.log-out {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userDetail {
+  background-color: rgb(234, 234, 234);
+  padding: 5px 25px;
+  border-radius: 10px;
 }

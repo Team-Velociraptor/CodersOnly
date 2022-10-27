@@ -17,7 +17,7 @@
   gap: 10px;
 }
 
-.feedBtns button {
+/* /* .feedBtns button {
   width: 100px;
   height: 30px;
   border: none;
@@ -33,4 +33,18 @@
   cursor: pointer;
   margin-top: 20px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+} */
+
+.no-users {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 600;
+  font-family: 'DejaVu Sans Mono', sans-serif;
+}
+
+.subscribe {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+  font-family: 'DejaVu Sans Mono', sans-serif;
 }

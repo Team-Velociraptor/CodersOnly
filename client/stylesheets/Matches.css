@@ -3,7 +3,7 @@ body {
 }
 
 .MainMatchesContainer {
-  margin: 50px;
+  margin: 0px 50px;
   background-color: #c4fff9;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -15,4 +15,7 @@ body {
 .MyMatches {
   font-family: 'DejaVu Sans Mono', sans-serif;
   margin-left: 50px;
+  text-align: center;
+  color: black;
+  font-size: 50px;
 }
