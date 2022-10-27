@@ -10,6 +10,7 @@ const Login = props => {
   const [toggleSignUp, setToggleSignUp] = useState(false);
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const [invalidLogin, setInvalidLogin] = useState();
   const navigate = useNavigate();
 
   const loginHandler = () => {
@@ -26,15 +27,20 @@ const Login = props => {
       body: JSON.stringify({ username: username, password: password }),
     })
       .then(data => {
-        return data.json();
-      })
-      .then(data => {
-        if (data) {
+        console.log("data ", data)
+        if (!data.ok) {
+          console.log("Unvalid Username");
+          setInvalidLogin("true");
+        } else {
           props.setCurrUser(username);
           props.setToken(username);
+          setInvalidLogin(false);
           navigate('/Feed');
+          
         }
-      });
+        return data.json();
+      })
+      
   };
 
   if (toggleSignUp) {
@@ -46,7 +52,9 @@ const Login = props => {
         <div className="LoginTitle">
           <img className="loginImage" src={Mole} alt="starmole" />
           <h1 className="title">CodersOnly</h1>
+          
         </div>
+        {invalidLogin && <p className="redText">Invalid login</p>}
         <input
           className="id"
           name="username"

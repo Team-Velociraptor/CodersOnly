@@ -121,6 +121,10 @@ body {
   animation-timing-function: steps(2, end);
 }
 
+.redText {
+  color: red;
+}
+
 @keyframes glitch {
   0% {
     clip-path: var(--slice-1);
