@@ -64,14 +64,12 @@ xdescribe('Get User Profile', () => {
         const res = await request(app).post('/api/users/Andrew').send(getUserObj);
 
         expect(res.statusCode).toEqual(201);
-
     })
 
     it('should return the string "Andrew" when succesfully getting user data', async () => {
         const res = await request(app).post('/api/users/Andrew').send(updateUserObj);
 
         expect(res.username).toBe("Andrew");
-
     })
 
 });
