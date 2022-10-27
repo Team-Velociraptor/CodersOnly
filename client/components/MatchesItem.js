@@ -57,6 +57,7 @@ const MatchesItem = props => {
           close={modalDisplay}
           name={username}
           pic={url}
+          user={props.user}
         />
         <button className="navBtn log-out" onClick={e => props.remover(e, username)}>
           Unmatch!

@@ -59,6 +59,9 @@ const ChatBoxModal = props => {
   useEffect(() => {
     props.socket.on('recieveMessage', async data => {
       const currentUser = await getCurrentUser(token);
+      console.log('GET MESSAGE????', data.message);
+      console.log('CURR USER', currentUser);
+      console.log('CURR USER', currentUser);
 
       if (data.message.owner_name !== currentUser.username) {
         const component = (
