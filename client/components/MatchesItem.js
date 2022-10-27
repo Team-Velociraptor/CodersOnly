@@ -36,6 +36,7 @@ const MatchesItem = props => {
         <h3 id="userName">{username}</h3>
       </div>
       <img className="matchesImage" src={url} alt="profileImage" />
+
       <div className ="ageLocation">
         <p className="userDetail"><span className="infoProperty">Age:</span> {age}</p>
         <p className="userDetail"><span className="infoProperty">Location:</span> {location}</p>
@@ -54,6 +55,7 @@ const MatchesItem = props => {
           close={modalDisplay}
           name={username}
           pic={url}
+          user={props.user}
         />
         <button className="navBtn log-out" onClick={e => handleDelete()}>
             Unmatch!
