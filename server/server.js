@@ -42,7 +42,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/messages', messagesRouter);
 
-// app.use('/api', apiRouter);
+app.use('/api', apiRouter);
 
 io.on('connection', socket => {
   console.log(`Client connected: ${socket.id}`);
