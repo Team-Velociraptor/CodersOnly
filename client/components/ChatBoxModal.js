@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import '../stylesheets/ModalContainer.css';
 import Messages from './Messages';
 import axios from 'axios';
@@ -8,12 +8,14 @@ const ChatBoxModal = props => {
   const [msgs, setMsgs] = useState([]);
   const [pfp, setPfp] = useState();
   const [messageBody, setMessageBody] = useState('');
+  const [user, setUser] = useState('');
   const token = JSON.parse(localStorage.getItem('token'));
 
   useEffect(() => {
     async function getMsgs() {
       // will be making await calls using axios to backend - passing down to model as messages prop
       const user1 = await axios.get(`/api/${token}`);
+      setUser(user1.data);
       axios
         .get(`/api/messages?user_1=${user1.data.username}&user_2=${props.name}`)
 
@@ -36,6 +38,7 @@ const ChatBoxModal = props => {
                   username={el.owner_name}
                   message={el.message_text}
                   pic={props.pic}
+                  key={`unique-${i}`}
                 />
               );
             }
@@ -48,17 +51,29 @@ const ChatBoxModal = props => {
     // changeSocket();
   }, []);
 
-  useEffect(() => {
-    props.socket.on('recieveMessage', data => {
-      console.log('STATE', msgs);
-      console.log('DATA', data);
+  const getCurrentUser = async userToken => {
+    const { data } = await axios.get(`/api/${userToken}`);
+    return data;
+  };
 
-      setMsgs(oldMsgs => {
-        return [
-          ...oldMsgs,
-          <Messages username={'RAMA'} message={data.message} pic={''} />,
-        ];
-      });
+  useEffect(() => {
+    props.socket.on('recieveMessage', async data => {
+      const currentUser = await getCurrentUser(token);
+
+      if (data.message.owner_name !== currentUser.username) {
+        const component = (
+          <MessagesRecieved
+            username={data.message.owner_name}
+            message={data.message.message_text}
+            pic={props.user.url}
+            key={`unique-${msgs.length}${props.user._id}`}
+          />
+        );
+
+        setMsgs(oldMsgs => {
+          return [...oldMsgs, component];
+        });
+      }
     });
   }, [props.socket]);
 
@@ -77,24 +92,37 @@ const ChatBoxModal = props => {
 
   async function sendMsgs() {
     const user1 = await axios.get(`/api/${token}`);
-    await axios.post('api/messages', {
+    const { data } = await axios.post('api/messages', {
       user_1: user1.data.username,
       user_2: props.name,
       messageText: document.querySelector('.forMsg').value,
     });
     document.querySelector('.forMsg').value = '';
     // console.log(document.querySelector('.forMsg').value)
+    return data;
   }
   //==========================================
   const sendMessage = async () => {
     if (messageBody) {
-      console.log('SEND CHAT CHATID', props.chatId);
-
-      sendMsgs();
+      const message = await sendMsgs();
+      //   console.log('USER', user);
 
       await props.socket.emit('chatMessages', {
-        message: messageBody,
+        message,
         chatId: props.chatId,
+      });
+
+      const component = (
+        <Messages
+          username={message.owner_name}
+          message={message.message_text}
+          pic={user.url}
+          key={`unique-${msgs.length}${user._id}`}
+        />
+      );
+
+      setMsgs(oldMsgs => {
+        return [...oldMsgs, component];
       });
 
       setMessageBody('');
