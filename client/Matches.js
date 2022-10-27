@@ -34,12 +34,30 @@ const Matches = props => {
               socket={io.connect('ws://localhost:3000')}
               key={el._id}
               user={el}
+              remover = {remover}
             />
           );
         });
         setUserMatches(matchesItemsArr);
       });
   }, []);
+
+  async function remover(e) {
+    await axios.put('/api/users/unmatch', {username: props.currUser, clickedUser: props.user.username})
+
+    console.log("firing");
+    axios.get(`/api/${props.currUser}`)
+    .then(data => {
+      const matchesArr = props.allUsers.filter((el) => {
+        if (data.data.matches[el.username] === 'yes' && el.matches[props.currUser] === 'yes') return true;
+      });
+      // console.log(matchesArr)
+      const matchesItemsArr = matchesArr.map((el) => {
+        return <MatchesItem key={el._id} user={el} remover={remover} />;
+      });
+      setUserMatches(matchesItemsArr);
+    })
+  }
 
   return (
     <div>

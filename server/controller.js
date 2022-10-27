@@ -47,7 +47,7 @@ controller.createUser = async (req, res, next) => {
 // change functionality to be for all instances of matches with value of not 'no' (or 'yes' and null)
 controller.getUser = async (req, res, next) => {
   try {
-    console.log('ID ', req.params);
+    //console.log('ID ', req.params);
     const { username } = req.params;
     res.locals.user = await User.findOne({ username }).exec();
     return next();

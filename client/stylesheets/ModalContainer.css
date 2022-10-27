@@ -36,11 +36,11 @@
     align-items: center;
     flex-direction: row;
     align-self: flex-end;
-    padding: 10px;
+    padding: 10px 0px;
 }
 .mSent img{
     height: 50px;
-    width: 50px;
+    width: 70px;
     border-radius:30px;
     margin-left: 5px;
     margin-right: 10px;
@@ -57,11 +57,12 @@
 }
 .mRecieved img{
     height: 50px;
-    width: 50px;
+    width: 70px;
     border-radius:30px;
     margin-left: 5px;
     margin-right: 10px;
     margin-bottom: 5px;
+    padding-top: 5px;
 }
 .mRecieved p{
     margin-bottom: 5px;
@@ -83,6 +84,10 @@
     right:0; /* new */
     top: 0; /* new */
     position: absolute; /* new */
+    border: none;
+    border-radius: 5px;
+    background-color: #ff6b6b;
+    padding: 15px;
 }
 .sendButton{
     position: absolute;
@@ -114,7 +119,7 @@
     width: 100%;
 }
 
-.sendButto:hover .sendButtonSpan {
+.sendButton :hover .sendButtonSpan {
     background: transparent;
 }
 
@@ -126,4 +131,6 @@
 
 .sendMessageDiv {
     display: flex;
+
+    align-items: center;
 }

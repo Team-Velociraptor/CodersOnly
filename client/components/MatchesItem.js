@@ -13,17 +13,13 @@ const MatchesItem = props => {
   }
   //each props.user is currently a unique user object
   useEffect(() => {
-    console.log(props.user);
+    //console.log(props.user);
   }, []);
 
   const modalDisplay = (e, chatId) => {
     showModal(!modal);
     joinChat(chatId);
   };
-
-  const handleDelete = () => {
-    console.log("deleted!")
-  }
 
   const joinChat = async chatId => {
     await props.socket.emit('joinChat', chatId);
@@ -42,7 +38,6 @@ const MatchesItem = props => {
       </div>
       <p className="userDetail bio"><span className="infoProperty">Bio:</span> {comment}</p>
       <p className="userDetail"><span className="infoProperty">Programming Language:</span> {proglang}</p>
-
       <div className="chatBtnDiv">
         <button className="navBtn" onClick={e => modalDisplay(e, props.chatId)}>
           Chat With {username}!

@@ -51,8 +51,7 @@ const Feed = (props) => {
         const nonRejectedUsers = props.allUsers.filter((el) => {
           if (!matches[el.username]) return true;
         });
-        setCurrUserFeed(nonRejectedUsers);
-        console.log(nonRejectedUsers);
+        setCurrUserFeed(nonRejectedUsers)
       });
   }, []);
 

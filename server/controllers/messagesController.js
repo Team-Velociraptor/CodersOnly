@@ -76,7 +76,6 @@ messagesController.getMessages = async (req, res, next) => {
 };
 
 messagesController.getDummyMsg = async (req, res, next) => {
-  console.log('HERE');
   try {
     res.locals.messages = [
       {

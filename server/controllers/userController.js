@@ -5,7 +5,7 @@ const userController = {};
 
 userController.getUser = async (req, res, next) => {
   try {
-    console.log('ID ', req.params);
+    //console.log('ID ', req.params);
     const { username } = req.params;
     res.locals.user = await User.findOne({ username }).exec();
     return next();

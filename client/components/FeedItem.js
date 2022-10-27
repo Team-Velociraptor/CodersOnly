@@ -18,6 +18,7 @@ const FeedItem = (props) => {
         <h3 id='userName'>{username}</h3>
       </div>
       <img className='feedImage' src={url} alt='profileImage' />
+
       <p className='userDetail'>Age: {age}</p>
       <p className='userDetail'>Location: {location}</p>
       <p className='userDetail bio'>Bio: {comment}</p>
