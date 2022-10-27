@@ -6,7 +6,6 @@ import ChatBoxModal from './ChatBoxModal';
 const MatchesItem = (props) => {
   const [modal, showModal] = useState(false);
   const [messages, setMessages] = useState();
-  const [modals, setModals] = useState([])
 
   // The way each user profile will look in the feed
   if (!props.user) {
