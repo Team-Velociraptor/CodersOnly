@@ -13,7 +13,7 @@ const Feed = (props) => {
   const yesHandler = () => {
     const clickedUser = document.querySelector('#userName').textContent;
 
-    fetch(`/api/${props.currUser}/${clickedUser}/yes`, {
+    fetch(`/api/functions/${props.currUser}/${clickedUser}/yes`, {
       method: 'PATCH',
     })
       .then((data) => {
@@ -29,7 +29,7 @@ const Feed = (props) => {
 
   const noHandler = (e) => {
     const clickedUser = document.querySelector('#userName').textContent;
-    fetch(`/api/${props.currUser}/${clickedUser}/no`, {
+    fetch(`/api/functions/${props.currUser}/${clickedUser}/no`, {
       method: 'PATCH',
     })
       .then((data) => {
@@ -42,7 +42,7 @@ const Feed = (props) => {
   };
 
   useEffect(() => {
-    fetch(`/api/${props.currUser}`)
+    fetch(`/api/users/${props.currUser}`)
       .then((data) => {
         return data.json();
       })
