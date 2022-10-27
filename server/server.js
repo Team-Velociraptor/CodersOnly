@@ -1,12 +1,24 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const socketio = require('socket.io');
+const http = require('http');
 const port = 3000;
 const authRouter = require('./routes/auth');
 const functionRouter = require('./routes/functions');
 const usersRouter = require('./routes/users');
 const messagesRouter = require('./routes/messages');
 const apiRouter = require('./api');
+const cors = require('cors');
+app.use(cors());
+
+const server = http.createServer(app);
+
+const io = socketio(server, {
+  cors: {
+    origin: '*',
+  },
+});
 
 mongoose.connect(
   'mongodb+srv://jchen0903:ilovecodesmith@cluster0.wjuijhf.mongodb.net/FoodTinder?retryWrites=true&w=majority'
@@ -36,6 +48,22 @@ app.use('/api/messages', messagesRouter);
 
 app.use('/api', apiRouter);
 
+io.on('connection', socket => {
+  console.log(`Client connected: ${socket.id}`);
+
+  socket.on('joinChat', chatId => {
+    console.log('JOINED CHAT', chatId);
+
+    console.log(socket.join(chatId));
+  });
+
+  socket.on('chatMessages', data => {
+    console.log('CHAT FROM BACKEND', data);
+
+    io.to(data.chatId).emit('recieveMessage', data);
+  });
+});
+
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
@@ -47,6 +75,6 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+server.listen(port, () => console.log(`Server started on port ${port}`));
 
 module.exports = app;

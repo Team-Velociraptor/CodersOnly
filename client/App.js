@@ -19,48 +19,81 @@ const App = () => {
   const [currUser, setCurrUser] = useState(token);
   const [allUsers, setAllUsers] = useState([]);
 
-
   useEffect(() => {
     const { data } = axios.get('api/messages/dummymessage');
     fetch('/api/friends')
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         setAllUsers(data);
       });
   }, []);
 
   if (!token) {
-    return(
-
+    return (
       <Routes>
-        <Route exact path="/" element={<Login setCurrUser={setCurrUser} setToken={setToken} currUser={currUser} />} />
-        <Route exact path='/Feed' element={<Login setToken={setToken} /> } />
-        <Route exact path='/Matches' element={<Login setToken={setToken} /> } />
-        <Route exact path="/Profile" element={<Login setToken={setToken} /> } />
+        <Route
+          exact
+          path="/"
+          element={
+            <Login
+              setCurrUser={setCurrUser}
+              setToken={setToken}
+              currUser={currUser}
+            />
+          }
+        />
+        <Route exact path="/Feed" element={<Login setToken={setToken} />} />
+        <Route exact path="/Matches" element={<Login setToken={setToken} />} />
+        <Route exact path="/Profile" element={<Login setToken={setToken} />} />
       </Routes>
-
-    ) 
+    );
   }
 
   return (
-    
     <Routes>
       {/*<Route
         path='/'
         element={<Login setCurrUser={setCurrUser} setToken={setToken} currUser={currUser} />}
         />*/}
       <Route
-        exact path='/'
-        element={<Feed setCurrUser={setCurrUser} removeToken={removeToken} currUser={currUser} allUsers={allUsers} />}
+        exact
+        path="/"
+        element={
+          <Feed
+            setCurrUser={setCurrUser}
+            removeToken={removeToken}
+            currUser={currUser}
+            allUsers={allUsers}
+          />
+        }
       />
       <Route
-        exact path='/Feed'
-        element={<Feed setCurrUser={setCurrUser} removeToken={removeToken} currUser={currUser} allUsers={allUsers} />}
+        exact
+        path="/Feed"
+        element={
+          <Feed
+            setCurrUser={setCurrUser}
+            removeToken={removeToken}
+            currUser={currUser}
+            allUsers={allUsers}
+          />
+        }
       />
-      <Route exact path='/Profile' element={<Profile removeToken={removeToken} currUser={currUser} />} />
       <Route
-        exact path='/Matches'
-        element={<Matches currUser={currUser} removeToken={removeToken} allUsers={allUsers} />}
+        exact
+        path="/Profile"
+        element={<Profile removeToken={removeToken} currUser={currUser} />}
+      />
+      <Route
+        exact
+        path="/Matches"
+        element={
+          <Matches
+            currUser={currUser}
+            removeToken={removeToken}
+            allUsers={allUsers}
+          />
+        }
       />
     </Routes>
   );

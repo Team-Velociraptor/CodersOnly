@@ -4,9 +4,6 @@ oldValue --> newValue:
 
 /api/verification --> /api/auth
 /api/friends --> /api/functions/friends
-
-
-Matches function will need to call
-/api/matches -> {
-    userId: 
-}
+/api/:username/:clickedUser/:decision --> /api/functions/:username/:clickedUser/:decision
+/api/:username --> /api/users/:username
+/api --> /api/users
