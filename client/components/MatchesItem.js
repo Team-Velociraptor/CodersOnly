@@ -25,10 +25,6 @@ const MatchesItem = props => {
     await props.socket.emit('joinChat', chatId);
   };
 
-  const handleDelete = () => {
-    console.log("deleted!")
-  }
-
   const { username, age, location, comment, proglang, url } = props.user;
   return (
     <div className="matchesContainer">
@@ -57,7 +53,7 @@ const MatchesItem = props => {
           pic={url}
           user={props.user}
         />
-        <button className="navBtn log-out" onClick={e => handleDelete()}>
+        <button className="navBtn log-out" onClick={(e) => props.remover(e)}>
             Unmatch!
         </button>
       </div>
