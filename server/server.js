@@ -50,7 +50,7 @@ io.on('connection', socket => {
   socket.on('joinChat', chatId => {
     console.log('JOINED CHAT', chatId);
 
-    console.log(socket.join(chatId));
+    socket.join(chatId);
   });
 
   socket.on('chatMessages', data => {
