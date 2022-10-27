@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: whitesmoke;
+  background-color: #9ceaef;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
     rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
@@ -25,6 +25,7 @@
 
 .profileContainer p {
   font-family: 'DejaVu Sans Mono', sans-serif;
+  background-color: #9ceaef;
 }
 
 .username {
@@ -50,4 +51,10 @@
 .forproglang{
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.userDetail {
+  background-color: rgb(234, 234, 234) !important;
+  padding: 5px 25px !important;
+  border-radius: 10px !important;
 }

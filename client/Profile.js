@@ -42,11 +42,13 @@ const Profile = (props) => {
             <h1>{username}</h1>
           </div>
           <img className='profileImage' src={url} alt='profileImage' />
-          <p className='userDetail'>Age: {age}</p>
-          <p className='userDetail'>Location: {location}</p>
-          <p className='userDetail'>Bio: {comment}</p>
-          <p className='userDetail'>Programming Language: {proglang}</p>
-          <button className="updateProfile" onClick={update}>Update My Profile</button>
+          <div className ="ageLocation">
+            <p className="userDetail"><span className="infoProperty">Age:</span> {age}</p>
+            <p className="userDetail"><span className="infoProperty">Location:</span> {location}</p>
+          </div>
+          <p className="userDetail bio"><span className="infoProperty">Bio:</span> {comment}</p>
+          <p className="userDetail"><span className="infoProperty">Programming Language:</span> {proglang}</p>
+          <button className="updateProfile navBtn" onClick={update}>Update My Profile</button>
           {showUpdate ? <UpdateProfile user={profileData} update={setProfileData} hide={setShowUpdate} curr={showUpdate} /> : null}
         </div>
       </div>

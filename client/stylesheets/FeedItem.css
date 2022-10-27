@@ -30,3 +30,17 @@
 .username h3 {
   text-align: center;
 }
+
+.no-users {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 600;
+  font-family: 'DejaVu Sans Mono', sans-serif;
+}
+
+.subscribe {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+  font-family: 'DejaVu Sans Mono', sans-serif;
+}
