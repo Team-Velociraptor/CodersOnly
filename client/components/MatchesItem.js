@@ -32,12 +32,20 @@ const MatchesItem = props => {
         <h3 id="userName">{username}</h3>
       </div>
       <img className="matchesImage" src={url} alt="profileImage" />
-      <div className ="ageLocation">
-        <p className="userDetail"><span className="infoProperty">Age:</span> {age}</p>
-        <p className="userDetail"><span className="infoProperty">Location:</span> {location}</p>
+      <div className="ageLocation">
+        <p className="userDetail">
+          <span className="infoProperty">Age:</span> {age}
+        </p>
+        <p className="userDetail">
+          <span className="infoProperty">Location:</span> {location}
+        </p>
       </div>
-      <p className="userDetail bio"><span className="infoProperty">Bio:</span> {comment}</p>
-      <p className="userDetail"><span className="infoProperty">Programming Language:</span> {proglang}</p>
+      <p className="userDetail bio">
+        <span className="infoProperty">Bio:</span> {comment}
+      </p>
+      <p className="userDetail">
+        <span className="infoProperty">Programming Language:</span> {proglang}
+      </p>
       <div className="chatBtnDiv">
         <button className="navBtn" onClick={e => modalDisplay(e, props.chatId)}>
           Chat With {username}!
@@ -50,8 +58,8 @@ const MatchesItem = props => {
           name={username}
           pic={url}
         />
-        <button className="navBtn log-out" onClick={e => handleDelete()}>
-            Unmatch!
+        <button className="navBtn log-out" onClick={e => props.remover(e, username)}>
+          Unmatch!
         </button>
       </div>
     </div>
