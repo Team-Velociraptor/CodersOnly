@@ -10,11 +10,11 @@ xdescribe('Create User', () => {
         "location": "the great plains",
         "proglang": "Java",
         "comment": "Bounce with me",
-        "matches": 8,
+        "matches": [],
         "url": null
     } 
 
-    xit('returns status code of 201 if succesfully created a user', async () => {
+    it('returns status code of 201 if succesfully created a user', async () => {
         const res = await request(app).post('/api/users').send(createUserObject);
         
         expect(res.statusCode).toEqual(201);

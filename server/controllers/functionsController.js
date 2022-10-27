@@ -30,8 +30,8 @@ functionsController.updateUserMatches = async (req, res, next) => {
 
         // check if decision is yes and if clickedUser's matches also includes currUser: yes
         const { matches } = await User.findOne({ username: clickedUser });
-        console.log(matches[username] === 'yes');
-        console.log(matches[username]);
+        // console.log(matches[username] === 'yes');
+        // console.log(matches[username]);
         if (matches[username] === 'yes' && decision === 'yes') {
             res.locals.match = true;
         } else {
