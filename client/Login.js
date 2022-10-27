@@ -20,7 +20,7 @@ const Login = (props) => {
     console.log(username);
     console.log(password);
 
-    fetch('/api/verification', {
+    fetch('/api/auth', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

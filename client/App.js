@@ -21,7 +21,7 @@ const App = () => {
 
   useEffect(() => {
     const { data } = axios.get('api/messages/dummymessage');
-    fetch('/api/friends')
+    fetch('/api/functions/friends')
       .then(response => response.json())
       .then(data => {
         setAllUsers(data);
